@@ -1,0 +1,43 @@
+#!/usr/bin/env groovy
+import groovy.json.JsonOutput
+
+def notifyRC(text, channel) {
+    def RCURL = 'https://rocketchat.domain.co.uk/hooks/AMkFszt2PbT4zDdY9/FNnqd8jRfcfqz4wevE7uA9bhKGqGbjZadD3pEoZ3pTrquKTT'
+    def payload = JsonOutput.toJson([text      : text,
+                                     channel   : channel])
+    sh "curl -X POST --data-urlencode \'payload=${payload}\' ${RCURL}"
+}
+
+/**
+        * ReqA Class description
+ */
+pipeline {
+    agent any
+
+    stages {
+        stage('Lint and Zip') {
+            steps {
+              /*sh '~/OctopusCLI/Octo pack --version=1.0.$BUILD_NUMBER --id=$JOB_NAME --format=Zip --outFolder=../octopack --overwrite' COMMENTED BECAUSE CANNOT SET DIR TO ZIP*/
+              sh 'zip -r $JOB_NAME.1.0.$BUILD_NUMBER.zip deployment/'
+            }
+        }
+        stage('Push to Octopus') {
+            steps {
+              sh '~/OctopusCLI/Octo push --package $JOB_NAME.1.0.$BUILD_NUMBER.zip --replace-existing --server https://octopus.domain.co.uk/ --apikey $OctoToken --ignoreSslErrors --debug'
+              sh '~/OctopusCLI/Octo create-release --project $JOB_NAME --version 1.0.$BUILD_NUMBER --packageversion 1.0.$BUILD_NUMBER --server https://octopus.domain.co.uk/ --apikey $OctoToken --ignoreSslErrors --progress'
+            }
+        }
+        /*
+        stage('Deploy from Octopus') {
+            steps {
+              sh '~/OctopusCLI/Octo deploy-release --project $JOB_NAME --version 1.0.$BUILD_NUMBER --packageversion 1.0.$BUILD_NUMBER --server https://octopus.domain.co.uk/ --apikey $OctoToken --ignoreSslErrors --progress'
+            }
+        } */
+        stage('Notify and Cleanup') {
+            steps {
+              /* notifyRC("Job '${JOB_NAME}' (${BUILD_NUMBER}) is available in Octopus. Refer to ${BUILD_URL} for details",'#core_infrastructure') */
+              step([$class: 'WsCleanup'])
+            }
+        }
+    }
+}

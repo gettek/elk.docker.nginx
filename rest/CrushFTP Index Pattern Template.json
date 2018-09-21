@@ -1,0 +1,75 @@
+PUT _template/crushftp
+{
+  "index_patterns": "crushftp-*",
+  "settings": {
+    "index": {
+      "refresh_interval": "5s"
+    }
+  },
+  "mappings": {
+    "doc": {
+      "properties": {
+        "@version": {
+          "type": "integer"
+        },
+        "@timestamp": {
+          "type": "date"
+        },
+        "prospector.type": {
+          "type": "text"
+        },
+        "TransactionStart": {
+          "type": "text"
+        },
+        "TransactionEnd": {
+          "type": "text"
+        },
+        "Protocol": {
+          "type": "text",
+          "fielddata": true
+        },
+        "BU": {
+          "type": "text",
+          "fielddata": true
+        },
+        "Department": {
+          "type": "text",
+          "fielddata": true
+        },
+        "Username": {
+          "type": "text",
+          "fielddata": true
+        },
+        "ClientIP": {
+          "type": "ip"
+        },
+        "Filesize": {
+          "type": "float"
+        },
+        "VFSpath": {
+          "type": "text"
+        },
+        "Kbps": {
+          "type": "float"
+        },
+        "MD5": {
+          "type": "text"
+        },
+        "Request": {
+          "type": "text",
+          "fielddata": true
+        },
+        "geoip": {
+          "type": "object",
+          "dynamic": true,
+          "properties": {
+            "ip" : {"type" : "ip" },
+            "location" : { "type" : "geo_point" },
+            "latitude" : { "type" : "half_float" },
+            "longitude" : { "type" : "half_float" }
+          }
+        }
+      }
+    }
+  }
+}

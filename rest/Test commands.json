@@ -1,0 +1,39 @@
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+GET _cat/indices?pretty
+GET _template?pretty
+GET _nodes/_all/
+GET _cluster/settings
+GET _/_stats/docs
+GET _cluster/health
+GET _nodes/stats/jvm
+GET _cluster/state/master_node,routing_table,routing_nodes,blocks
+GET /_cat/indices/cr*?v&s=index
+
+
+PUT crushftp-*/_mapping/request
+{
+  "properties": {
+    "TransactionStart": {
+      "type":   "date",
+      "format": "HH:mm:ss||epoch_millis"
+    }
+  }
+}
+
+
+CRUSH
+-----
+GEOIP: cd /media/data/logstash/conf; curl -O "http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz"; gunzip GeoLite2-City.mmdb.gz
+
+include_lines: ["R E T R*", "S T O R*"]
+  grep -rnw -A 2 '/var/opt/CrushFTP7_PC/logs/session_logs/' -e "S T O R*"
+  grep -rnw -A 2 '/var/opt/CrushFTP7_PC/logs/session_logs/' -e "R E T R*"
+
+
+ grep -rnw -A 2 '/etc/nginx' -e "deny all;"

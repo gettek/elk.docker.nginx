@@ -1,0 +1,90 @@
+---
+version: '3'
+services:
+  # The environment variable "TAG" is used throughout this file to
+  # specify the version of the images to run. The default is set in the
+  # '.env' file in this folder. It can be overridden with any normal
+  # technique for setting environment variables, for example:
+  #
+  #   TAG=6.1.0-beta1 docker-compose up
+  #
+  # REF: https://docs.docker.com/compose/compose-file/#variable-substitution
+  #
+  # Also be sure to set the ELASTIC_VERSION variable. For released versions,
+  # ${TAG} and ${ELASTIC_VERSION} will be identical, but for pre-release
+  # versions, ${TAG} might contain an extra build identifier, like
+  # "6.1.0-beta1-3eab5b40", so a full invocation might look like:
+  #
+  #   ELASTIC_VERSION=6.1.0-beta1 TAG=6.1.0-beta1-3eab5b40 docker-compose up
+  #
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:<%=  @composetag %>
+    container_name: elk_elasticsearch
+    environment:
+     - 'cluster.name=casds_monitoring'
+     - 'node.name=<%=  @hostname %>'
+     - 'network.bind_host=0.0.0.0'
+     - 'network.publish_host=<%=  @ipaddress %>'
+     - 'bootstrap.memory_lock=true'
+     - 'discovery.zen.ping.unicast.hosts=<%=  @elastic_cluster %>'
+     - 'discovery.zen.minimum_master_nodes=1'
+     - 'ELASTIC_PASSWORD=<%=  @elastic_password %>'
+     - 'ES_JAVA_OPTS=-Xms2g -Xmx2g'
+    cap_add:
+      - IPC_LOCK
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports: ['9200:9200','9300:9300']
+    volumes:
+     - ../../data/elasticsearch:/usr/share/elasticsearch/data
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:<%=  @composetag %>
+    container_name: elk_kibana
+    environment:
+      - ELASTICSEARCH_USERNAME=kibana
+      - ELASTICSEARCH_PASSWORD=<%=  @elastic_password %>
+    ports: ['5601:5601']
+    depends_on: ['elasticsearch']
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:<%=  @composetag %>
+    container_name: elk_logstash
+    environment:
+      - 'xpack.monitoring.elasticsearch.password=<%=  @elastic_password %>'
+      - LS_HEAP_SIZE=2048m
+    command: logstash -f /config-dir/logstash.conf -l /logs
+    ports: ['5000:5000']
+    volumes:
+      - ../../config/logstash:/config-dir
+      - ../../data/logstash/logs:/logs
+    depends_on: ['elasticsearch', 'setup_logstash']
+
+  nginx:
+    image: nginx:latest
+    container_name: elk_nginx
+    volumes:
+      - ../../config/certs:/etc/nginx/certs
+      - ../../config/nginx:/etc/nginx/conf.d
+      - ../../data/nginx:/var/log/nginx
+    ports: ['80:80','443:443']
+    links: ['kibana']
+
+  # Run a short-lived container to set up Logstash.
+  setup_logstash:
+    image: centos:7
+    container_name: elk_setup_logstash
+    volumes: ['../../script/setup-logstash.sh:/usr/local/bin/setup-logstash.sh:ro']
+    command: ['/bin/bash', '-c', 'cat /usr/local/bin/setup-logstash.sh | tr -d "\r" | bash']
+    environment: ['ELASTIC_PASSWORD=<%=  @elastic_password %>']
+    depends_on: ['elasticsearch']
+
+  setup_kibana: 
+    image: centos:7
+    container_name: elk_setup_kibana
+    volumes: ['../../script/setup-kibana.sh:/usr/local/bin/setup-kibana.sh:ro']
+    command: ['/bin/bash', '-c', 'cat /usr/local/bin/setup-kibana.sh | tr -d "\r" | bash']
+    environment: ['ELASTIC_PASSWORD=<%=  @elastic_password %>']
+    depends_on: ['elasticsearch']

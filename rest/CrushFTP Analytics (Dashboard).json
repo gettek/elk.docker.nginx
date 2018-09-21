@@ -1,0 +1,26 @@
+[
+  {
+    "_id": "646590e0-e57d-11e7-b4c5-c38a808a898d",
+    "_type": "dashboard",
+    "_source": {
+      "title": "CrushFTP Analytics",
+      "hits": 0,
+      "description": "CrushFTP Usage Analytics",
+      "panelsJSON": "[{\"title\":\"Total Transfers (FS)\",\"panelIndex\":\"1\",\"gridData\":{\"x\":0,\"y\":0,\"w\":3,\"h\":7,\"i\":\"1\"},\"id\":\"8c9686b0-e57c-11e7-b4c5-c38a808a898d\",\"type\":\"visualization\",\"version\":\"6.1.0\"},{\"title\":\"Total Transfers (SS)\",\"panelIndex\":\"2\",\"gridData\":{\"x\":3,\"y\":0,\"w\":3,\"h\":7,\"i\":\"2\"},\"id\":\"91c2e510-e0b9-11e7-af98-cff4aa80009d\",\"type\":\"visualization\",\"version\":\"6.1.0\"},{\"title\":\"GeoIP Heatmap\",\"panelIndex\":\"3\",\"gridData\":{\"x\":6,\"y\":0,\"w\":6,\"h\":7,\"i\":\"3\"},\"id\":\"11221b10-e57d-11e7-b4c5-c38a808a898d\",\"type\":\"visualization\",\"version\":\"6.1.0\"},{\"title\":\"Total KB per BU\",\"panelIndex\":\"4\",\"gridData\":{\"x\":0,\"y\":7,\"w\":4,\"h\":3,\"i\":\"4\"},\"id\":\"55c5bd30-e703-11e7-b4c5-c38a808a898d\",\"type\":\"visualization\",\"version\":\"6.1.0\"},{\"title\":\"Cluster Node Utilisation\",\"panelIndex\":\"5\",\"gridData\":{\"x\":4,\"y\":7,\"w\":2,\"h\":3,\"i\":\"5\"},\"version\":\"6.1.0\",\"type\":\"visualization\",\"id\":\"1a86e3f0-e705-11e7-b4c5-c38a808a898d\"}]",
+      "optionsJSON": "{\"darkTheme\":true,\"hidePanelTitles\":false,\"useMargins\":false}",
+      "uiStateJSON": "{\"P-3\":{\"mapCenter\":[47.45780853075031,6.306152343750001],\"mapZoom\":4},\"P-4\":{\"vis\":{\"legendOpen\":true}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "now/w",
+      "timeFrom": "now/w",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[],\"highlightAll\":true,\"version\":true}"
+      }
+    }
+  }
+]

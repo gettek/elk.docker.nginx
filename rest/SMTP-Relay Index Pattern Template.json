@@ -1,0 +1,53 @@
+PUT _template/smtp
+{
+  "index_patterns": "smtp-*",
+  "settings": {
+    "index": {
+      "refresh_interval": "5s"
+    }
+  },
+  "mappings": {
+    "doc": {
+      "properties": {
+        "@version": {
+          "type": "integer"
+        },
+        "@timestamp": {
+          "type": "date"
+        },
+        "prospector.type": {
+          "type": "text"
+        },
+        "SenderIP": {
+          "type": "ip"
+        },
+        "SenderHostname": {
+          "type": "text",
+          "fielddata": true
+        },
+        "SVCName": {
+          "type": "text"
+        },
+        "SMTPHost": {
+          "type": "text"
+        },
+        "SMTPHostIP": {
+          "type": "ip"
+        },
+        "MessageHeader": {
+          "type": "text"
+        },
+        "geoip": {
+          "type": "object",
+          "dynamic": true,
+          "properties": {
+            "ip" : {"type" : "ip" },
+            "location" : { "type" : "geo_point" },
+            "latitude" : { "type" : "half_float" },
+            "longitude" : { "type" : "half_float" }
+          }
+        }
+      }
+    }
+  }
+}

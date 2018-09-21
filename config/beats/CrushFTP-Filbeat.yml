@@ -1,0 +1,26 @@
+filebeat::beat_name: 'CrushFTP'
+filebeat::outputs:
+  logstash:
+    hosts: ['10.243.50.24:5000'] #AZURE-LB
+    loadbalance: true
+filebeat::logging:
+  level: 'info'
+  files:
+    path: '/var/log/filebeat'
+    name: 'crushbeat'
+    rotateeverybytes: 10485760
+    keepfiles: 14
+
+filebeat::prospectors:
+  'crush-logs':
+    paths: ['/var/opt/CrushFTP8_PC/CrushFTP.log']
+    include_lines: ['S T O R*', 'R E T R*']
+    scan_frequency: 1m
+    ignore_older: '24h'
+    backoff: '5m'
+    max_backoff: '10m'
+    multiline:
+      pattern: '\s+R\*$'
+      max_lines: 3
+      negate: true
+      match: 'after'

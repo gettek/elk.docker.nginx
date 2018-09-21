@@ -1,0 +1,72 @@
+[
+  {
+    "_id": "8c9686b0-e57c-11e7-b4c5-c38a808a898d",
+    "_type": "visualization",
+    "_source": {
+      "title": "CrushFTP Utilisation (FS)",
+      "visState": "{\r\n  \"title\": \"CrushFTP Utilisation (FS)\",\r\n  \"type\": \"histogram\",\r\n  \"params\": {\r\n    \"type\": \"histogram\",\r\n    \"grid\": {\r\n      \"categoryLines\": false,\r\n      \"style\": {\r\n        \"color\": \"#eee\"\r\n      }\r\n    },\r\n    \"categoryAxes\": [\r\n      {\r\n        \"id\": \"CategoryAxis-1\",\r\n        \"type\": \"category\",\r\n        \"position\": \"bottom\",\r\n        \"show\": true,\r\n        \"style\": {},\r\n        \"scale\": {\r\n          \"type\": \"linear\"\r\n        },\r\n        \"labels\": {\r\n          \"show\": true,\r\n          \"truncate\": 100,\r\n          \"filter\": false\r\n        },\r\n        \"title\": {}\r\n      }\r\n    ],\r\n    \"valueAxes\": [\r\n      {\r\n        \"id\": \"ValueAxis-1\",\r\n        \"name\": \"LeftAxis-1\",\r\n        \"type\": \"value\",\r\n        \"position\": \"left\",\r\n        \"show\": true,\r\n        \"style\": {},\r\n        \"scale\": {\r\n          \"type\": \"linear\",\r\n          \"mode\": \"normal\"\r\n        },\r\n        \"labels\": {\r\n          \"show\": true,\r\n          \"rotate\": 0,\r\n          \"filter\": false,\r\n          \"truncate\": 100\r\n        },\r\n        \"title\": {\r\n          \"text\": \"Transfers\"\r\n        }\r\n      }\r\n    ],\r\n    \"seriesParams\": [\r\n      {\r\n        \"show\": \"true\",\r\n        \"type\": \"histogram\",\r\n        \"mode\": \"stacked\",\r\n        \"data\": {\r\n          \"label\": \"Count\",\r\n          \"id\": \"1\"\r\n        },\r\n        \"valueAxis\": \"ValueAxis-1\",\r\n        \"drawLinesBetweenPoints\": true,\r\n        \"showCircles\": true\r\n      }\r\n    ],\r\n    \"addTooltip\": true,\r\n    \"addLegend\": true,\r\n    \"legendPosition\": \"right\",\r\n    \"times\": [],\r\n    \"addTimeMarker\": false,\r\n    \"orderBucketsBySum\": false\r\n  },\r\n  \"aggs\": [\r\n    {\r\n      \"id\": \"1\",\r\n      \"enabled\": true,\r\n      \"type\": \"count\",\r\n      \"schema\": \"metric\",\r\n      \"params\": {}\r\n    },\r\n    {\r\n      \"id\": \"2\",\r\n      \"enabled\": true,\r\n      \"type\": \"terms\",\r\n      \"schema\": \"segment\",\r\n      \"params\": {\r\n        \"field\": \"BU\",\r\n        \"include\": \"fs\",\r\n        \"size\": 5,\r\n        \"order\": \"desc\",\r\n        \"orderBy\": \"1\",\r\n        \"customLabel\": \"BU\"\r\n      }\r\n    },\r\n    {\r\n      \"id\": \"3\",\r\n      \"enabled\": true,\r\n      \"type\": \"terms\",\r\n      \"schema\": \"group\",\r\n      \"params\": {\r\n        \"field\": \"Username\",\r\n        \"size\": 5,\r\n        \"order\": \"desc\",\r\n        \"orderBy\": \"1\",\r\n        \"customLabel\": \"Username\"\r\n      }\r\n    }\r\n  ]\r\n}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\n  \"index\": \"ed794cd0-e57a-11e7-b4c5-c38a808a898d\",\n  \"filter\": [],\n  \"query\": {\n    \"query\": \"\",\n    \"language\": \"lucene\"\n  }\n}"
+      }
+    }
+  },
+  {
+    "_id": "91c2e510-e0b9-11e7-af98-cff4aa80009d",
+    "_type": "visualization",
+    "_source": {
+      "title": "CrushFTP Utilisation (SS)",
+      "visState": "{\n  \"title\": \"CrushFTP Utilisation (SS)\",\n  \"type\": \"histogram\",\n  \"params\": {\n    \"type\": \"histogram\",\n    \"grid\": {\n      \"categoryLines\": false,\n      \"style\": {\n        \"color\": \"#eee\"\n      }\n    },\n    \"categoryAxes\": [\n      {\n        \"id\": \"CategoryAxis-1\",\n        \"type\": \"category\",\n        \"position\": \"bottom\",\n        \"show\": true,\n        \"style\": {},\n        \"scale\": {\n          \"type\": \"linear\"\n        },\n        \"labels\": {\n          \"show\": true,\n          \"truncate\": 100,\n          \"filter\": false\n        },\n        \"title\": {}\n      }\n    ],\n    \"valueAxes\": [\n      {\n        \"id\": \"ValueAxis-1\",\n        \"name\": \"LeftAxis-1\",\n        \"type\": \"value\",\n        \"position\": \"left\",\n        \"show\": true,\n        \"style\": {},\n        \"scale\": {\n          \"type\": \"linear\",\n          \"mode\": \"normal\"\n        },\n        \"labels\": {\n          \"show\": true,\n          \"rotate\": 0,\n          \"filter\": false,\n          \"truncate\": 100\n        },\n        \"title\": {\n          \"text\": \"Transfers\"\n        }\n      }\n    ],\n    \"seriesParams\": [\n      {\n        \"show\": \"true\",\n        \"type\": \"histogram\",\n        \"mode\": \"stacked\",\n        \"data\": {\n          \"label\": \"Count\",\n          \"id\": \"1\"\n        },\n        \"valueAxis\": \"ValueAxis-1\",\n        \"drawLinesBetweenPoints\": true,\n        \"showCircles\": true\n      }\n    ],\n    \"addTooltip\": true,\n    \"addLegend\": true,\n    \"legendPosition\": \"right\",\n    \"times\": [],\n    \"addTimeMarker\": false,\n    \"orderBucketsBySum\": false\n  },\n  \"aggs\": [\n    {\n      \"id\": \"1\",\n      \"enabled\": true,\n      \"type\": \"count\",\n      \"schema\": \"metric\",\n      \"params\": {}\n    },\n    {\n      \"id\": \"2\",\n      \"enabled\": true,\n      \"type\": \"terms\",\n      \"schema\": \"segment\",\n      \"params\": {\n        \"field\": \"BU\",\n        \"include\": \"ss\",\n        \"size\": 5,\n        \"order\": \"desc\",\n        \"orderBy\": \"1\",\n        \"customLabel\": \"BU\"\n      }\n    },\n    {\n      \"id\": \"3\",\n      \"enabled\": true,\n      \"type\": \"terms\",\n      \"schema\": \"group\",\n      \"params\": {\n        \"field\": \"Username\",\n        \"size\": 5,\n        \"order\": \"desc\",\n        \"orderBy\": \"1\",\n        \"customLabel\": \"Username\"\n      }\n    }\n  ]\n}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\n  \"index\": \"ed794cd0-e57a-11e7-b4c5-c38a808a898d\",\n  \"filter\": [],\n  \"query\": {\n    \"query\": \"\",\n    \"language\": \"lucene\"\n  }\n}"
+      }
+    }
+  },
+  {
+    "_id": "11221b10-e57d-11e7-b4c5-c38a808a898d",
+    "_type": "visualization",
+    "_source": {
+      "title": "CrushFTP GeoIP Heatmap",
+      "visState": "{\"title\":\"CrushFTP GeoIP Heatmap\",\"type\":\"tile_map\",\"params\":{\"mapType\":\"Shaded Circle Markers\",\"isDesaturated\":false,\"addTooltip\":true,\"heatClusterSize\":1.5,\"legendPosition\":\"topleft\",\"mapZoom\":2,\"mapCenter\":[0,0],\"wms\":{\"enabled\":false,\"options\":{\"format\":\"image/png\",\"transparent\":true}}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"geoip.location\",\"autoPrecision\":true,\"isFilteredByCollar\":true,\"useGeocentroid\":true,\"precision\":3}}]}",
+      "uiStateJSON": "{\"mapZoom\":4,\"mapCenter\":[48.40003249610685,-43.37402343750001]}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"ed794cd0-e57a-11e7-b4c5-c38a808a898d\",\"filter\":[],\"query\":{\"query\":\"\",\"language\":\"lucene\"}}"
+      }
+    }
+  },
+  {
+    "_id": "55c5bd30-e703-11e7-b4c5-c38a808a898d",
+    "_type": "visualization",
+    "_source": {
+      "title": "CrushFTP Total KB per BU",
+      "visState": "{\"title\":\"CrushFTP Total KB per BU\",\"type\":\"pie\",\"params\":{\"type\":\"pie\",\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"bottom\",\"isDonut\":true,\"labels\":{\"show\":false,\"values\":true,\"last_level\":true,\"truncate\":100}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"Filesize\",\"customLabel\":\"KB\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"BU\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"BU\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"Username\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Username\"}}]}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"ed794cd0-e57a-11e7-b4c5-c38a808a898d\",\"filter\":[],\"query\":{\"query\":\"\",\"language\":\"lucene\"}}"
+      }
+    }
+  },
+  {
+    "_id": "1a86e3f0-e705-11e7-b4c5-c38a808a898d",
+    "_type": "visualization",
+    "_source": {
+      "title": "CrushFTP Cluster Node Utilisation",
+      "visState": "{\"title\":\"CrushFTP Cluster Node Utilisation\",\"type\":\"pie\",\"params\":{\"type\":\"pie\",\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"bottom\",\"isDonut\":true,\"labels\":{\"show\":false,\"values\":true,\"last_level\":true,\"truncate\":100}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Total Transfers\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"beat.hostname.keyword\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Host\"}}]}",
+      "uiStateJSON": "{\"vis\":{\"legendOpen\":true}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"ed794cd0-e57a-11e7-b4c5-c38a808a898d\",\"filter\":[],\"query\":{\"query\":\"\",\"language\":\"lucene\"}}"
+      }
+    }
+  }
+]

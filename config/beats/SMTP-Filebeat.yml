@@ -1,0 +1,35 @@
+filebeat::beat_name: 'smtpbeat'
+filebeat::outputs:
+  logstash:
+    hosts: ['10.243.50.24:5000'] #AZURE-LB
+    loadbalance: true
+filebeat::logging:
+  level: 'info'
+  files:
+    path: 'C:\filebeat\'
+    name: 'smtpbeat'
+    rotateeverybytes: 10485760
+    keepfiles: 7
+filebeat::config:
+  modules:
+    path: ${path.config}/modules.d/*.yml
+    reload.enabled: false
+
+filebeat::prospectors:
+  'relay-logs':
+    paths: ['C:\SMTP Logs\SMTPSVC1\*.log']
+    encoding: plain
+    tags: ['smtp-relay']
+    exclude_lines: ['OutboundConnection*']
+    include_lines: ['FROM*', 'TO']
+    scan_frequency: 1m
+    ignore_older: '24h'
+    backoff: '5m'
+    max_backoff: '10m'
+    close_inactive: 5m
+    close_renamed: false
+    close_removed: true
+    close_eof: false
+    clean_inactive: 0
+    clean_removed: true
+    close_timeout: 0
