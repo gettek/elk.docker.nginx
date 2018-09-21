@@ -1,7 +1,6 @@
 # Monitoring & Analytics with Elasticsearch
 This example Docker Compose configuration demonstrates many components of the
-Elastic Stack, all running on a single machine under Docker. The Terraform templates will deploy a cluster of 3 Azure VMs behind an internal loadbalancer all serve the same ELK and NGINX services to cater for potential low latency traffic from various Elastic Beats.
-[`Cloned from Stack-Docker`](https://github.com/elastic/stack-docker)
+Elastic Stack, all running on a single machine under Docker. The Terraform templates will deploy a cluster of 3 Azure VMs behind an internal loadbalancer all of which serve the same ELK and NGINX services to cater for low latency traffic from various Elastic Beats. [`Cloned from elastic/Stack-Docker`](https://github.com/elastic/stack-docker)
 
 ## Branches
 * `Master:` Used for Production cluster (synced with Puppet Production branch)
