@@ -2,7 +2,7 @@
 import groovy.json.JsonOutput
 
 def notifyRC(text, channel) {
-    def RCURL = 'https://rocketchat.domain.co.uk/hooks/AMkFszt2PbT4zDdY9/FNnqd8jRfcfqz4wevE7uA9bhKGqGbjZadD3pEoZ3pTrquKTT'
+    def RCURL = 'https://rocketchat.domain.co.uk/hooks/<scooby-doo>'
     def payload = JsonOutput.toJson([text      : text,
                                      channel   : channel])
     sh "curl -X POST --data-urlencode \'payload=${payload}\' ${RCURL}"
