@@ -25,11 +25,11 @@
   # determine git branch
   if $::environment == 'production' {
     $gitbranch = 'master'
-    $cluster   = '10.243.50.29,10.243.50.28,10.243.50.31'
+    $cluster   = '10.20.30.29,10.20.30.28,10.20.30.31'
   }
   else {
     $gitbranch = 'development'
-    $cluster   = '172.21.248.133,172.21.248.137,172.21.248.139'
+    $cluster   = '172.20.20.133,172.20.20.137,172.20.20.139'
   }
   # create docker environment file
   $nodename = $trusted['hostname']
@@ -137,8 +137,8 @@ ELASTIC_CONFIG_DIR=/usr/share/elasticsearch/config
   # $elastic_host_ip = $facts['networking']['ip']
   # $elastic_host_name = $trusted['hostname']
   # $elastic_cluster = $trusted['hostname'] ? {
-  # /^dev/  => "172.21.248.133,172.21.248.137,172.21.248.139",
-  # default => "10.243.50.29,10.243.50.28,10.243.50.31",
+  # /^dev/  => "172.20.20.133,172.20.20.137,172.20.20.139",
+  # default => "10.20.30.29,10.20.30.28,10.20.30.31",
   # }
   # 
   # docker::run { 'elasticsearch':

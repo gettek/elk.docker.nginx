@@ -52,20 +52,20 @@ variable "env_vars" {
     SubID       = ""
     vNetName    = "production"
     SubNetName  = "app"
-    SubNetSpace = "10.243.50.0/23"
+    SubNetSpace = "10.20.30.0/23"
 
     #DR
     drlocation    = "westeurope"
     drSubID       = ""
     drvNetName    = "dr"
     drSubNetName  = "app"
-    drSubNetSpace = "10.243.58.0/23"
+    drSubNetSpace = "10.20.60.0/23"
 
     #DEV
     devlocation    = "northeurope"
     devSubID       = ""
     devvNetName    = "sdlc"
     devSubNetName  = "app"
-    devSubNetSpace = "172.21.248.128/25"
+    devSubNetSpace = "172.20.20.128/25"
   }
 }

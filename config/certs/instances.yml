@@ -1,16 +1,16 @@
 instances:
   - name: "monitoringksvr0"
     ip: 
-      - "10.243.48.7"
+      - "10.20.40.7"
     dns: 
       - "monitoringksvr0.dom.co.uk"
   - name: "monitoringesvr0"
     ip:
-      - "10.243.50.11"
+      - "10.20.30.11"
     dns:
       - "monitoringesvr0.dom.co.uk"
   - name: "monitoringesvr1"
     ip:
-      - "10.243.50.7"
+      - "10.20.30.7"
     dns:
       - "monitoringesvr1.dom.co.uk"

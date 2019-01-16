@@ -1,7 +1,7 @@
 filebeat::beat_name: 'smtpbeat'
 filebeat::outputs:
   logstash:
-    hosts: ['10.243.50.24:5000'] #AZURE-LB
+    hosts: ['10.20.30.24:5000'] #AZURE-LB
     loadbalance: true
 filebeat::logging:
   level: 'info'
