@@ -3,14 +3,14 @@ instances:
     ip: 
       - "10.243.48.7"
     dns: 
-      - "monitoringksvr0.casds.co.uk"
+      - "monitoringksvr0.dom.co.uk"
   - name: "monitoringesvr0"
     ip:
       - "10.243.50.11"
     dns:
-      - "monitoringesvr0.casds.co.uk"
+      - "monitoringesvr0.dom.co.uk"
   - name: "monitoringesvr1"
     ip:
       - "10.243.50.7"
     dns:
-      - "monitoringesvr1.casds.co.uk"
+      - "monitoringesvr1.dom.co.uk"

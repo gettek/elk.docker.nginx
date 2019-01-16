@@ -21,7 +21,7 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:<%=  @composetag %>
     container_name: elk_elasticsearch
     environment:
-     - 'cluster.name=casds_monitoring'
+     - 'cluster.name=monitoring'
      - 'node.name=<%=  @hostname %>'
      - 'network.bind_host=0.0.0.0'
      - 'network.publish_host=<%=  @ipaddress %>'
